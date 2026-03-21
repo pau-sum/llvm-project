@@ -2207,7 +2207,22 @@ CIRGenFunction::emitAArch64BuiltinExpr(unsigned builtinID, const CallExpr *expr,
   case NEON::BI__builtin_neon_vfmas_laneq_f32:
   case NEON::BI__builtin_neon_vfmad_lane_f64:
   case NEON::BI__builtin_neon_vfmad_laneq_f64:
-  case NEON::BI__builtin_neon_vmull_v:
+    cgm.errorNYI(expr->getSourceRange(),
+                 std::string("unimplemented AArch64 builtin call: ") +
+                     getContext().BuiltinInfo.getName(builtinID));
+    return mlir::Value{};
+  case NEON::BI__builtin_neon_vmull_v: {
+    intrName = usgn ? "aarch64.neon.umull" : "aarch64.neon.smull";
+    if (type.isPoly())
+      intrName = "aarch64.neon.pmull";
+    // Widening multiply: args have half the element width of the result.
+    auto resultIntTy = mlir::cast<cir::IntType>(ty.getElementType());
+    auto narrowIntTy =
+        cir::IntType::get(builder.getContext(), resultIntTy.getWidth() / 2,
+                          resultIntTy.isSigned());
+    auto argTy = cir::VectorType::get(narrowIntTy, ty.getSize());
+    return emitNeonCall(cgm, builder, {argTy, argTy}, ops, intrName, ty, loc);
+  }
   case NEON::BI__builtin_neon_vmax_v:
   case NEON::BI__builtin_neon_vmaxq_v:
   case NEON::BI__builtin_neon_vmaxh_f16:
