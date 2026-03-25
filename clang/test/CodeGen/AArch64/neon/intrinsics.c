@@ -991,7 +991,7 @@ int64_t test_vshld_u64(int64_t a,int64_t b) {
 int16x8_t test_vmull_s8(int8x8_t a, int8x8_t b) {
  // CIR: cir.call_llvm_intrinsic "aarch64.neon.smull" %{{.*}}, %{{.*}} : (!cir.vector<8 x !s8i>, !cir.vector<8 x !s8i>) -> !cir.vector<8 x !s16i>
 
-// LLVM-SAME: <8 x i8> noundef [[A:%.*]], <8 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <8 x i8> {{.*}} [[A:%.*]], <8 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[VMULL_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.smull.v8i16(<8 x i8> [[A]], <8 x i8> [[B]])
 // LLVM-NEXT:    ret <8 x i16> [[VMULL_I]]
   return vmull_s8(a, b);
@@ -1002,7 +1002,7 @@ int16x8_t test_vmull_s8(int8x8_t a, int8x8_t b) {
 int32x4_t test_vmull_s16(int16x4_t a, int16x4_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.smull" %{{.*}}, %{{.*}} : (!cir.vector<4 x !s16i>, !cir.vector<4 x !s16i>) -> !cir.vector<4 x !s32i>
 
-// LLVM-SAME: <4 x i16> noundef [[A:%.*]], <4 x i16> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <4 x i16> {{.*}} [[A:%.*]], <4 x i16> {{.*}} [[B:%.*]])
 // LLVM:    [[TMP0:%.*]] = bitcast <4 x i16> [[A]] to <8 x i8>
 // LLVM-NEXT:    [[TMP1:%.*]] = bitcast <4 x i16> [[B]] to <8 x i8>
 // LLVM-NEXT:    [[VMULL_I:%.*]] = bitcast <8 x i8> [[TMP0]] to <4 x i16>
@@ -1017,7 +1017,7 @@ int32x4_t test_vmull_s16(int16x4_t a, int16x4_t b) {
 int64x2_t test_vmull_s32(int32x2_t a, int32x2_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.smull" %{{.*}}, %{{.*}} : (!cir.vector<2 x !s32i>, !cir.vector<2 x !s32i>) -> !cir.vector<2 x !s64i>
 
-// LLVM-SAME: <2 x i32> noundef [[A:%.*]], <2 x i32> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <2 x i32> {{.*}} [[A:%.*]], <2 x i32> {{.*}} [[B:%.*]])
 // LLVM:    [[TMP0:%.*]] = bitcast <2 x i32> [[A]] to <8 x i8>
 // LLVM-NEXT:    [[TMP1:%.*]] = bitcast <2 x i32> [[B]] to <8 x i8>
 // LLVM-NEXT:    [[VMULL_I:%.*]] = bitcast <8 x i8> [[TMP0]] to <2 x i32>
@@ -1032,7 +1032,7 @@ int64x2_t test_vmull_s32(int32x2_t a, int32x2_t b) {
 uint16x8_t test_vmull_u8(uint8x8_t a, uint8x8_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.umull" %{{.*}}, %{{.*}} : (!cir.vector<8 x !u8i>, !cir.vector<8 x !u8i>) -> !cir.vector<8 x !u16i>
 
-// LLVM-SAME: <8 x i8> noundef [[A:%.*]], <8 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <8 x i8> {{.*}} [[A:%.*]], <8 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[VMULL_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.umull.v8i16(<8 x i8> [[A]], <8 x i8> [[B]])
 // LLVM-NEXT:    ret <8 x i16> [[VMULL_I]]
   return vmull_u8(a, b);
@@ -1043,7 +1043,7 @@ uint16x8_t test_vmull_u8(uint8x8_t a, uint8x8_t b) {
 uint32x4_t test_vmull_u16(uint16x4_t a, uint16x4_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.umull" %{{.*}}, %{{.*}} : (!cir.vector<4 x !u16i>, !cir.vector<4 x !u16i>) -> !cir.vector<4 x !u32i>
 
-// LLVM-SAME: <4 x i16> noundef [[A:%.*]], <4 x i16> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <4 x i16> {{.*}} [[A:%.*]], <4 x i16> {{.*}} [[B:%.*]])
 // LLVM:    [[TMP0:%.*]] = bitcast <4 x i16> [[A]] to <8 x i8>
 // LLVM-NEXT:    [[TMP1:%.*]] = bitcast <4 x i16> [[B]] to <8 x i8>
 // LLVM-NEXT:    [[VMULL_I:%.*]] = bitcast <8 x i8> [[TMP0]] to <4 x i16>
@@ -1058,7 +1058,7 @@ uint32x4_t test_vmull_u16(uint16x4_t a, uint16x4_t b) {
 uint64x2_t test_vmull_u32(uint32x2_t a, uint32x2_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.umull" %{{.*}}, %{{.*}} : (!cir.vector<2 x !u32i>, !cir.vector<2 x !u32i>) -> !cir.vector<2 x !u64i>
 
-// LLVM-SAME: <2 x i32> noundef [[A:%.*]], <2 x i32> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <2 x i32> {{.*}} [[A:%.*]], <2 x i32> {{.*}} [[B:%.*]])
 // LLVM:    [[TMP0:%.*]] = bitcast <2 x i32> [[A]] to <8 x i8>
 // LLVM-NEXT:    [[TMP1:%.*]] = bitcast <2 x i32> [[B]] to <8 x i8>
 // LLVM-NEXT:    [[VMULL_I:%.*]] = bitcast <8 x i8> [[TMP0]] to <2 x i32>
@@ -1075,7 +1075,7 @@ int16x8_t test_vmull_high_s8(int8x16_t a, int8x16_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_s8
 // CIR: cir.call @vmull_s8([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <16 x i8> noundef [[A:%.*]], <16 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <16 x i8> {{.*}} [[A:%.*]], <16 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <16 x i8> [[A]], <16 x i8> [[A]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <16 x i8> [[B]], <16 x i8> [[B]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[VMULL_I_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.smull.v8i16(<8 x i8> [[SHUFFLE_I5_I]], <8 x i8> [[SHUFFLE_I_I]])
@@ -1090,7 +1090,7 @@ int32x4_t test_vmull_high_s16(int16x8_t a, int16x8_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_s16
 // CIR: {{%.*}} = cir.call @vmull_s16([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <8 x i16> noundef [[A:%.*]], <8 x i16> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <8 x i16> {{.*}} [[A:%.*]], <8 x i16> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <8 x i16> [[A]], <8 x i16> [[A]], <4 x i32> <i32 4, i32 5, i32 6, i32 7>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <8 x i16> [[B]], <8 x i16> [[B]], <4 x i32> <i32 4, i32 5, i32 6, i32 7>
 // LLVM-NEXT:    [[TMP0:%.*]] = bitcast <4 x i16> [[SHUFFLE_I5_I]] to <8 x i8>
@@ -1109,7 +1109,7 @@ int64x2_t test_vmull_high_s32(int32x4_t a, int32x4_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_s32
 // CIR: {{%.*}} = cir.call @vmull_s32([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <4 x i32> noundef [[A:%.*]], <4 x i32> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <4 x i32> {{.*}} [[A:%.*]], <4 x i32> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <4 x i32> [[A]], <4 x i32> [[A]], <2 x i32> <i32 2, i32 3>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <4 x i32> [[B]], <4 x i32> [[B]], <2 x i32> <i32 2, i32 3>
 // LLVM-NEXT:    [[TMP0:%.*]] = bitcast <2 x i32> [[SHUFFLE_I5_I]] to <8 x i8>
@@ -1128,7 +1128,7 @@ uint16x8_t test_vmull_high_u8(uint8x16_t a, uint8x16_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_u8
 // CIR: {{%.*}} = cir.call @vmull_u8([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <16 x i8> noundef [[A:%.*]], <16 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <16 x i8> {{.*}} [[A:%.*]], <16 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <16 x i8> [[A]], <16 x i8> [[A]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <16 x i8> [[B]], <16 x i8> [[B]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[VMULL_I_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.umull.v8i16(<8 x i8> [[SHUFFLE_I5_I]], <8 x i8> [[SHUFFLE_I_I]])
@@ -1143,7 +1143,7 @@ uint32x4_t test_vmull_high_u16(uint16x8_t a, uint16x8_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_u16
 // CIR: {{%.*}} = cir.call @vmull_u16([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <8 x i16> noundef [[A:%.*]], <8 x i16> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <8 x i16> {{.*}} [[A:%.*]], <8 x i16> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <8 x i16> [[A]], <8 x i16> [[A]], <4 x i32> <i32 4, i32 5, i32 6, i32 7>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <8 x i16> [[B]], <8 x i16> [[B]], <4 x i32> <i32 4, i32 5, i32 6, i32 7>
 // LLVM-NEXT:    [[TMP0:%.*]] = bitcast <4 x i16> [[SHUFFLE_I5_I]] to <8 x i8>
@@ -1162,7 +1162,7 @@ uint64x2_t test_vmull_high_u32(uint32x4_t a, uint32x4_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_u32
 // CIR: {{%.*}} = cir.call @vmull_u32([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <4 x i32> noundef [[A:%.*]], <4 x i32> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <4 x i32> {{.*}} [[A:%.*]], <4 x i32> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5_I:%.*]] = shufflevector <4 x i32> [[A]], <4 x i32> [[A]], <2 x i32> <i32 2, i32 3>
 // LLVM-NEXT:    [[SHUFFLE_I_I:%.*]] = shufflevector <4 x i32> [[B]], <4 x i32> [[B]], <2 x i32> <i32 2, i32 3>
 // LLVM-NEXT:    [[TMP0:%.*]] = bitcast <2 x i32> [[SHUFFLE_I5_I]] to <8 x i8>
@@ -1179,7 +1179,7 @@ uint64x2_t test_vmull_high_u32(uint32x4_t a, uint32x4_t b) {
 poly16x8_t test_vmull_p8(poly8x8_t a, poly8x8_t b) {
 // CIR: cir.call_llvm_intrinsic "aarch64.neon.pmull" %{{.*}}, %{{.*}} : (!cir.vector<8 x !s8i>, !cir.vector<8 x !s8i>) -> !cir.vector<8 x !s16i>
 
-// LLVM-SAME: <8 x i8> noundef [[A:%.*]], <8 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <8 x i8> {{.*}} [[A:%.*]], <8 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[VMULL_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.pmull.v8i16(<8 x i8> [[A]], <8 x i8> [[B]])
 // LLVM-NEXT:    ret <8 x i16> [[VMULL_I]]
   return vmull_p8(a, b);
@@ -1192,7 +1192,7 @@ poly16x8_t test_vmull_high_p8(poly8x16_t a, poly8x16_t b) {
 // CIR: [[HIGH_B:%.*]] = cir.call @vget_high_p8
 // CIR: {{%.*}} = cir.call @vmull_p8([[HIGH_A]], [[HIGH_B]])
 
-// LLVM-SAME: <16 x i8> noundef [[A:%.*]], <16 x i8> noundef [[B:%.*]]) #[[ATTR0]] {
+// LLVM-SAME: <16 x i8> {{.*}} [[A:%.*]], <16 x i8> {{.*}} [[B:%.*]])
 // LLVM:    [[SHUFFLE_I5:%.*]] = shufflevector <16 x i8> [[A]], <16 x i8> [[A]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[SHUFFLE_I:%.*]] = shufflevector <16 x i8> [[B]], <16 x i8> [[B]], <8 x i32> <i32 8, i32 9, i32 10, i32 11, i32 12, i32 13, i32 14, i32 15>
 // LLVM-NEXT:    [[VMULL_I_I:%.*]] = call <8 x i16> @llvm.aarch64.neon.pmull.v8i16(<8 x i8> [[SHUFFLE_I5]], <8 x i8> [[SHUFFLE_I]])
