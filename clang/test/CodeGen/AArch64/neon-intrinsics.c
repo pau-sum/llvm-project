@@ -539,26 +539,6 @@ float64x2_t test_vmulq_f64(float64x2_t v1, float64x2_t v2) {
   return vmulq_f64(v1, v2);
 }
 
-// CHECK-LABEL: define dso_local <8 x i8> @test_vmul_p8(
-// CHECK-SAME: <8 x i8> noundef [[V1:%.*]], <8 x i8> noundef [[V2:%.*]]) #[[ATTR0]] {
-// CHECK-NEXT:  [[ENTRY:.*:]]
-// CHECK-NEXT:    [[VMUL_V_I:%.*]] = call <8 x i8> @llvm.aarch64.neon.pmul.v8i8(<8 x i8> [[V1]], <8 x i8> [[V2]])
-// CHECK-NEXT:    ret <8 x i8> [[VMUL_V_I]]
-//
-poly8x8_t test_vmul_p8(poly8x8_t v1, poly8x8_t v2) {
-  return vmul_p8(v1, v2);
-}
-
-// CHECK-LABEL: define dso_local <16 x i8> @test_vmulq_p8(
-// CHECK-SAME: <16 x i8> noundef [[V1:%.*]], <16 x i8> noundef [[V2:%.*]]) #[[ATTR0]] {
-// CHECK-NEXT:  [[ENTRY:.*:]]
-// CHECK-NEXT:    [[VMULQ_V_I:%.*]] = call <16 x i8> @llvm.aarch64.neon.pmul.v16i8(<16 x i8> [[V1]], <16 x i8> [[V2]])
-// CHECK-NEXT:    ret <16 x i8> [[VMULQ_V_I]]
-//
-poly8x16_t test_vmulq_p8(poly8x16_t v1, poly8x16_t v2) {
-  return vmulq_p8(v1, v2);
-}
-
 // CHECK-LABEL: define dso_local <8 x i8> @test_vmla_s8(
 // CHECK-SAME: <8 x i8> noundef [[V1:%.*]], <8 x i8> noundef [[V2:%.*]], <8 x i8> noundef [[V3:%.*]]) #[[ATTR0]] {
 // CHECK-NEXT:  [[ENTRY:.*:]]

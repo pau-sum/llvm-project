@@ -1174,6 +1174,32 @@ uint64x2_t test_vmull_high_u32(uint32x4_t a, uint32x4_t b) {
   return vmull_high_u32(a, b);
 }
 
+//===------------------------------------------------------===//
+// 2.1.1.3.1. Polynomial Multiply
+//===------------------------------------------------------===//
+
+// LLVM-LABEL: @test_vmul_p8(
+// CIR-LABEL: @vmul_p8(
+poly8x8_t test_vmul_p8(poly8x8_t v1, poly8x8_t v2) {
+// CIR: cir.call_llvm_intrinsic "aarch64.neon.pmul" %{{.*}}, %{{.*}} : (!cir.vector<8 x !s8i>, !cir.vector<8 x !s8i>) -> !cir.vector<8 x !s8i>
+
+// LLVM-SAME: <8 x i8> {{.*}} [[V1:%.*]], <8 x i8> {{.*}} [[V2:%.*]])
+// LLVM:    [[VMUL_V_I:%.*]] = call <8 x i8> @llvm.aarch64.neon.pmul.v8i8(<8 x i8> [[V1]], <8 x i8> [[V2]])
+// LLVM-NEXT:    ret <8 x i8> [[VMUL_V_I]]
+  return vmul_p8(v1, v2);
+}
+
+// LLVM-LABEL: @test_vmulq_p8(
+// CIR-LABEL: @vmulq_p8(
+poly8x16_t test_vmulq_p8(poly8x16_t v1, poly8x16_t v2) {
+// CIR: cir.call_llvm_intrinsic "aarch64.neon.pmul" %{{.*}}, %{{.*}} : (!cir.vector<16 x !s8i>, !cir.vector<16 x !s8i>) -> !cir.vector<16 x !s8i>
+
+// LLVM-SAME: <16 x i8> {{.*}} [[V1:%.*]], <16 x i8> {{.*}} [[V2:%.*]])
+// LLVM:    [[VMULQ_V_I:%.*]] = call <16 x i8> @llvm.aarch64.neon.pmul.v16i8(<16 x i8> [[V1]], <16 x i8> [[V2]])
+// LLVM-NEXT:    ret <16 x i8> [[VMULQ_V_I]]
+  return vmulq_p8(v1, v2);
+}
+
 // LLVM-LABEL: @test_vmull_p8(
 // CIR-LABEL: @vmull_p8(
 poly16x8_t test_vmull_p8(poly8x8_t a, poly8x8_t b) {
