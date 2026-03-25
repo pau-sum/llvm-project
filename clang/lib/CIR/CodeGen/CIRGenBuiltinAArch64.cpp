@@ -2215,12 +2215,8 @@ CIRGenFunction::emitAArch64BuiltinExpr(unsigned builtinID, const CallExpr *expr,
     intrName = usgn ? "aarch64.neon.umull" : "aarch64.neon.smull";
     if (type.isPoly())
       intrName = "aarch64.neon.pmull";
-    // Widening multiply: args have half the element width of the result.
-    auto resultIntTy = mlir::cast<cir::IntType>(ty.getElementType());
-    auto narrowIntTy =
-        cir::IntType::get(builder.getContext(), resultIntTy.getWidth() / 2,
-                          resultIntTy.isSigned());
-    auto argTy = cir::VectorType::get(narrowIntTy, ty.getSize());
+    cir::VectorType argTy = builder.getExtendedOrTruncatedElementVectorType(
+        ty, false /* truncated */, !usgn);
     return emitNeonCall(cgm, builder, {argTy, argTy}, ops, intrName, ty, loc);
   }
   case NEON::BI__builtin_neon_vmax_v:
