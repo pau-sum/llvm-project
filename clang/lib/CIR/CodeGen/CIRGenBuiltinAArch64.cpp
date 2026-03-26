@@ -2224,7 +2224,7 @@ CIRGenFunction::emitAArch64BuiltinExpr(unsigned builtinID, const CallExpr *expr,
     if (type.isPoly())
       intrName = "aarch64.neon.pmull";
     cir::VectorType argTy = builder.getExtendedOrTruncatedElementVectorType(
-        ty, false /* truncated */, !usgn);
+        ty, /*isExtended*/ false, !usgn);
     return emitNeonCall(cgm, builder, {argTy, argTy}, ops, intrName, ty, loc);
   }
   case NEON::BI__builtin_neon_vmax_v:
